@@ -17,10 +17,11 @@ public class RobotContainer {
   public RobotContainer() {
     configureBindings();
 
-    driveBase.tankCalculation(controller.getLeftX(), controller.getRightX());
   }
 
-  private void configureBindings() {}
+  private void configureBindings() {
+    driveBase.tankCalculation(controller.getLeftX(), controller.getRightX());
+  }
 
   public Command getAutonomousCommand() {
     return Commands.print("No autonomous command configured");
