@@ -6,12 +6,16 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Drive.TankDrive;
+import frc.robot.Commands.TeleOpDriveCommand;
 
 public class RobotContainer {
   private TankDrive driveBase = new TankDrive();
-  private XboxController controller = new XboxController(0);
+  private CommandXboxController controller = new CommandXboxController(0);
 
   
   public RobotContainer() {
@@ -20,7 +24,13 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    driveBase.tankCalculation(controller.getLeftX(), controller.getRightX());
+    Trigger isTeleop = new Trigger(DriverStation::isTeleopEnabled);
+    
+    controller.a().negate().and(isTeleop).whileTrue(new TeleOpDriveCommand(
+      driveBase,
+      () -> controller.getLeftY(),
+      () -> controller.getRightY())
+     .repeatedly());
   }
 
   public Command getAutonomousCommand() {
