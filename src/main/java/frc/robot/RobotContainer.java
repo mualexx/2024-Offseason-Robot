@@ -7,7 +7,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Drive.TankDrive;
 
 public class RobotContainer {
@@ -18,7 +17,7 @@ public class RobotContainer {
   public RobotContainer() {
     configureBindings();
 
-    driveBase.setVelocity(controller.getLeftX(), controller.getRightX());
+    driveBase.tankCalculation(controller.getLeftX(), controller.getRightX());
   }
 
   private void configureBindings() {}
