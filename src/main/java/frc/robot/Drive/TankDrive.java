@@ -1,14 +1,12 @@
 package frc.robot.Drive;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
-import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
-import com.ctre.phoenix.motorcontrol.TalonSRXFeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
-import com.ctre.phoenix.motorcontrol.can.TalonSRXPIDSetConfiguration;
-
 import frc.robot.Constants.HardwareConstants;
 import frc.robot.Constants.TankDriveConstants;
+
 
 public class TankDrive {
     private TalonSRX leftLBDriveMotor = new TalonSRX(HardwareConstants.kLEFT_LB_DRIVE_CAN);
@@ -23,9 +21,6 @@ public class TankDrive {
      * @param leftVelocity
      * @param rightVelocity
      */
-    public void setVelocity(double leftVelocity, double rightVelocity){
-        
-    }
     
     public TankDrive() {
         leftLBDriveMotor.follow(leftTBDriveMotor);
@@ -44,6 +39,19 @@ public class TankDrive {
 
 
         leftTBDriveMotor.configSupplyCurrentLimit(TankDriveConstants.kDRIVE_CURRENT_LIMIT, 1000);
+        rightTBDriveMotor.configSupplyCurrentLimit(TankDriveConstants.kDRIVE_CURRENT_LIMIT, 1000);
 
+        leftTBDriveMotor.setNeutralMode(NeutralMode.Brake);
+        rightTBDriveMotor.setNeutralMode(NeutralMode.Brake);
+    }
+
+    public void setVelocity(double leftVelocity, double rightVelocity){
+        leftTBDriveMotor.set(ControlMode.Velocity, leftVelocity);
+        leftLBDriveMotor.set(ControlMode.Velocity, leftVelocity);
+        leftRBDriveMotor.set(ControlMode.Velocity, leftVelocity);
+
+        rightTBDriveMotor.set(ControlMode.Velocity, rightVelocity);
+        rightLBDriveMotor.set(ControlMode.Velocity, rightVelocity);
+        rightRBDriveMotor.set(ControlMode.Velocity, rightVelocity);
     }
 }

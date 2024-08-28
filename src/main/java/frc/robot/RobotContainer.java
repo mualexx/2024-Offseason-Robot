@@ -6,10 +6,19 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.Drive.TankDrive;
 
 public class RobotContainer {
+  private TankDrive driveBase = new TankDrive();
+  private XboxController controller = new XboxController(0);
+
+  
   public RobotContainer() {
     configureBindings();
+
+    driveBase.setVelocity(controller.getLeftX(), controller.getRightX());
   }
 
   private void configureBindings() {}
