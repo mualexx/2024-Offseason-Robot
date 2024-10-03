@@ -10,6 +10,8 @@ public class Constants {
     public static final class TankDriveConstants {
         public static final SupplyCurrentLimitConfiguration kDRIVE_CURRENT_LIMIT = 
             new SupplyCurrentLimitConfiguration(true, 40, 50, 1.0);
+
+        public static final double kDEFAULT_MAX_SPEED = 0.6; // Percent
     }
     public static final class HardwareConstants {
         public static final int kPDH_CAN = 7;
