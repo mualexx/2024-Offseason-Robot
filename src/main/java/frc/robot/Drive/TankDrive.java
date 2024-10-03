@@ -42,21 +42,21 @@ public class TankDrive extends SubsystemBase{
         leftCDriveMotor.configSupplyCurrentLimit(TankDriveConstants.kDRIVE_CURRENT_LIMIT, 1000);
         rightCDriveMotor.configSupplyCurrentLimit(TankDriveConstants.kDRIVE_CURRENT_LIMIT, 1000);
 
-        leftCDriveMotor.config_kP(0, TankDriveConstants.kDRIVE_P, 1000);
+        /*leftCDriveMotor.config_kP(0, TankDriveConstants.kDRIVE_P, 1000);
         leftCDriveMotor.config_kI(0, TankDriveConstants.kDRIVE_I, 1000);
         leftCDriveMotor.config_kD(0, TankDriveConstants.kDRIVE_D, 1000);
 
         rightCDriveMotor.config_kP(0, TankDriveConstants.kDRIVE_P, 1000);
         rightCDriveMotor.config_kI(0, TankDriveConstants.kDRIVE_I, 1000);
-        rightCDriveMotor.config_kD(0, TankDriveConstants.kDRIVE_D, 1000);
+        rightCDriveMotor.config_kD(0, TankDriveConstants.kDRIVE_D, 1000);*/
 
         leftCDriveMotor.setNeutralMode(NeutralMode.Brake);
         rightCDriveMotor.setNeutralMode(NeutralMode.Brake);
 
         // Init tank
         drive = new DifferentialDrive(
-            (double speed) -> leftCDriveMotor.set(ControlMode.Velocity, speed * TankDriveConstants.kMAXIMUM_SPEED * TankDriveConstants.kDRIVE_GEAR_RATIO),
-            (double speed) -> rightCDriveMotor.set(ControlMode.Velocity, speed * TankDriveConstants.kMAXIMUM_SPEED * TankDriveConstants.kDRIVE_GEAR_RATIO)
+            (double speed) -> leftCDriveMotor.set(ControlMode.PercentOutput, speed),
+            (double speed) -> rightCDriveMotor.set(ControlMode.PercentOutput, speed)
         );
     }
 
