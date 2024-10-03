@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.Drive.TankDrive;
-import frc.robot.Commands.TeleOpDriveCommand;
+import frc.robot.commands.TeleOpDriveCommand;
+import frc.robot.subsystems.TankDrive;
 
 public class RobotContainer {
   private TankDrive driveBase = new TankDrive();
