@@ -19,10 +19,12 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
+    // Drive base control
     driveBase.setDefaultCommand(new TeleOpDriveCommand(
       driveBase, 
-      () -> controller.getLeftY(), 
-      () -> controller.getRightY()
+      () -> -controller.getLeftY(), 
+      () -> -controller.getRightY(),
+      controller.leftStick()
     ));
   }
 
